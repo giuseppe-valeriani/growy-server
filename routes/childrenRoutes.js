@@ -31,4 +31,16 @@ router.post("/add", async (req, res) => {
   }
 });
 
+// GET request on single child
+router.get("/:id", async (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({ message: "Bad request" });
+  }
+  try {
+    const result = await knex("child_tasks").where({ child_id: req.params.id });
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({ error: message });
+  }
+});
 module.exports = router;
