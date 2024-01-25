@@ -37,7 +37,22 @@ router.get("/:id", async (req, res) => {
     return res.status(400).json({ message: "Bad request" });
   }
   try {
-    const result = await knex("child_tasks").where({ child_id: req.params.id });
+    // const result = await knex("child_tasks").where({ child_id: req.params.id })
+    const result = await knex("child_tasks")
+      .where({ child_id: req.params.id })
+      .join("children", "children.id", "child_tasks.child_id")
+      .join("tasks", "tasks.id", "child_tasks.task_id")
+      .select(
+        "child_tasks.id",
+        "children.name",
+        "children.current_points",
+        "tasks.task",
+        "tasks.icon",
+        "tasks.frequence",
+        "child_tasks.is_completed",
+        "child_tasks.is_verified"
+      );
+
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({ error: message });
