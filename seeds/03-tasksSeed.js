@@ -19,9 +19,9 @@ exports.seed = async function (knex) {
     },
     {
       id: 3,
-      task: "brush your teeth",
+      task: "eat some pizza",
       frequence: "daily",
-      icon: "icons/lemonadepixel_kidschores-23.png",
+      icon: "icons/kidschores-10.png",
       points: 5,
       is_skill: false,
     },

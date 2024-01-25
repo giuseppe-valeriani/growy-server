@@ -2,7 +2,7 @@
 const router = require("express").Router();
 const knex = require("knex")(require("../knexfile"));
 
-// GET requests
+// GET requests list of tasks
 router.get("/list", async (req, res) => {
   try {
     const result = await knex("tasks");
@@ -21,7 +21,7 @@ router.get("/fast", async (req, res) => {
   }
 });
 
-// POST request
+// POST request new task
 router.post("/add", async (req, res) => {
   try {
     if (!req.body) {

@@ -2,7 +2,7 @@
 const router = require("express").Router();
 const knex = require("knex")(require("../knexfile"));
 
-// GET request
+// GET request icons list
 router.get("/", async (req, res) => {
   try {
     const result = await knex("icons");
