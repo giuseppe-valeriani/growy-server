@@ -12,4 +12,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+// POST request
+router.post("/add", async (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({ message: "Bad request, missing name" });
+  }
+  const newTast = {
+    name: req.body.name,
+    current_points: 0,
+  };
+
+  try {
+    const created = await knex("children").insert(newTast);
+    const response = await knex("children").where({ id: created[0] }).first();
+    return res.status(201).json(response);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
