@@ -21,7 +21,7 @@ exports.seed = async function (knex) {
       id: 3,
       task: "eat some pizza",
       frequence: "daily",
-      icon: "icons/kidschores-10.png",
+      icon: "icons/everyday-10.png",
       points: 5,
       is_skill: false,
     },

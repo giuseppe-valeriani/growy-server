@@ -28,13 +28,7 @@ router.post("/add", async (req, res) => {
       return res.status(400).json({ message: "Bad request" });
     }
 
-    if (
-      !req.body.task ||
-      !req.body.frequence ||
-      !req.body.icon ||
-      !req.body.points ||
-      !req.body.is_skill
-    ) {
+    if (!req.body.task || !req.body.frequence || !req.body.points) {
       return res
         .status(400)
         .json({ message: "Incomplete request, missing fields" });
@@ -43,7 +37,7 @@ router.post("/add", async (req, res) => {
     const newTask = {
       task: req.body.task,
       frequence: req.body.frequence,
-      icon: req.body.icon,
+      icon: req.body.icon || "",
       points: Number(req.body.points),
       is_skill: Number(req.body.is_skill),
     };

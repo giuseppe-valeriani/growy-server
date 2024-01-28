@@ -1,6 +1,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable("icons", (table) => {
-    table.string("icon").primary();
+    table.increments("id").primary();
+    table.string("icon").notNullable();
   });
 };
 
