@@ -50,4 +50,10 @@ router.post("/add", async (req, res) => {
   }
 });
 
+//DELETE a task
+router.delete("/:id", async (req, res) => {
+  await knex("tasks").where({ id: req.params.id }).del();
+  return res.status(204).json({ message: "task deleted" });
+});
+
 module.exports = router;
