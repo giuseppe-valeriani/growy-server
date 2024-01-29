@@ -9,5 +9,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("active");
+  return knex.schema.dropTable("child_tasks");
 };
