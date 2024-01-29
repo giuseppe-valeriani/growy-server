@@ -32,17 +32,14 @@ router.get("/:id", async (req, res) => {
 
 // POST request on single child task
 router.post("/:id/add", async (req, res) => {
-  console.log(req.params.id);
-  if (!req.params.id || !req.body.task) {
+  if (!req.params.id || !req.body.id) {
     return res.status(400).json({ message: "Bad request" });
   }
 
   try {
-    const getTask = await knex("tasks").where({ id: req.body.task }).first();
-
     const addTask = {
       child_id: req.params.id,
-      task_id: getTask.id,
+      task_id: req.body.id,
       is_completed: false,
       is_verified: false,
     };
@@ -53,7 +50,7 @@ router.post("/:id/add", async (req, res) => {
       .first();
     return res.status(201).json(response);
   } catch (error) {
-    return res.status(500).send("nope");
+    return res.status(500).json({ message: error.message });
   }
 });
 

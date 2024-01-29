@@ -14,7 +14,7 @@ router.get("/list", async (req, res) => {
 
 router.get("/fast", async (req, res) => {
   try {
-    const result = await knex("tasks").select("task", "icon");
+    const result = await knex("tasks").select("id", "task", "icon");
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({ error: error.message });
