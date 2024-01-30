@@ -22,8 +22,7 @@ router.get("/:id", async (req, res) => {
         "tasks.frequence",
         "tasks.points",
         "tasks.is_skill",
-        "child_tasks.is_completed",
-        "child_tasks.is_verified"
+        "child_tasks.is_completed"
       );
     return res.status(200).json(result);
   } catch (error) {
