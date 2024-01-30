@@ -2,6 +2,12 @@
 const router = require("express").Router();
 const knex = require("knex")(require("../knexfile"));
 
+// GET all children tasks
+router.get("/goals", async (req, res) => {
+  const response = await knex("child_tasks").where({ is_completed: 1 }).first();
+  res.status(200).json(response);
+});
+
 // GET request on single child list of tasks
 router.get("/:id", async (req, res) => {
   if (!req.params.id) {
