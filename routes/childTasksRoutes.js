@@ -7,6 +7,7 @@ router.get("/:id", async (req, res) => {
   if (!req.params.id) {
     return res.status(400).json({ message: "Bad request" });
   }
+
   try {
     const result = await knex("child_tasks")
       .where({ child_id: req.params.id })
@@ -49,6 +50,20 @@ router.post("/:id/add", async (req, res) => {
       .where({ id: created[0] })
       .first();
     return res.status(201).json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
+// DELETE single child task
+router.delete("/:id/tasks", async (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({ message: "Bad request" });
+  }
+
+  try {
+    await knex("child_tasks").where({ id: req.body.id }).del();
+    return res.status(204).json({ message: "Item deleted" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

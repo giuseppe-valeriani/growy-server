@@ -49,5 +49,37 @@ exports.seed = async function (knex) {
       points: 20,
       is_skill: true,
     },
+    {
+      id: 7,
+      task: "take the rubbish out",
+      frequence: "daily",
+      icon: "icons/kidschores-78.png",
+      points: 10,
+      is_skill: false,
+    },
+    {
+      id: 8,
+      task: "get the mail",
+      frequence: "daily",
+      icon: "icons/kidschores-77.png",
+      points: 5,
+      is_skill: false,
+    },
+    {
+      id: 9,
+      task: "water the plants",
+      frequence: "sometimes",
+      icon: "icons/kidschores-67.png",
+      points: 10,
+      is_skill: false,
+    },
+    {
+      id: 10,
+      task: "dusting",
+      frequence: "weekly",
+      icon: "icons/kidschores-32.png",
+      points: 20,
+      is_skill: false,
+    },
   ]);
 };

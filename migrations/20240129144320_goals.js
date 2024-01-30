@@ -1,7 +1,12 @@
 exports.up = function (knex) {
   return knex.schema.createTable("goals", (table) => {
     table.increments("id").primary();
-    table.integer("child_id").unsigned().references("children.id");
+    table
+      .integer("child_id")
+      .unsigned()
+      .references("children.id")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
     table.string("goal").notNullable();
     table.integer("points");
   });

@@ -31,4 +31,28 @@ router.post("/add", async (req, res) => {
   }
 });
 
+// PATCH child points
+router.patch("/:id", async (req, res) => {
+  if (!req.params.id) {
+    return res.status(400).json({ message: "Bad request" });
+  }
+  try {
+    const childObtained = await knex("children")
+      .where({ id: req.params.id })
+      .first();
+    const points = childObtained.current_points + req.body.current_points;
+    const newScore = {
+      ...childObtained,
+      current_points: points,
+    };
+    await knex("children")
+      .where({ id: req.params.id })
+      .first()
+      .update(newScore);
+    return res.status(200).json(newScore);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
