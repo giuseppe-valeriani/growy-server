@@ -55,4 +55,17 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+// DELETE children profile
+router.delete("/:id", async (req, res) => {
+  if (!req.body.id) {
+    return res.status(400).json({ message: "Bad request" });
+  }
+  try {
+    await knex("children").where({ id: req.body.id }).del();
+    return res.status(204).json({ message: "Recipient deleted" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;
