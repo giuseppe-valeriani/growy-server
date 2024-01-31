@@ -6,21 +6,21 @@ const PORT = process.env.PORT;
 const app = express();
 
 // Endpoints folders
-const children = require("./routes/childrenRoutes");
-const icons = require("./routes/iconsRoutes");
-const tasks = require("./routes/tasksRoutes");
-const goals = require("./routes/childGoalsRoutes");
-const childTasks = require("./routes/childTasksRoutes");
+const childrenRoutes = require("./routes/childrenRoutes");
+const iconsRoutes = require("./routes/iconsRoutes");
+const tasksRoutes = require("./routes/tasksRoutes");
+const childGoalsRoutes = require("./routes/childGoalsRoutes");
+const childTasksRoutes = require("./routes/childTasksRoutes");
 
 // Server functionalities
 app.use(cors());
 app.use(express.json());
 app.use(express.static("./assets"));
-app.use("/children", children);
-app.use("/icons", icons);
-app.use("/tasks", tasks);
-app.use("/children", goals);
-app.use("/children", childTasks);
+app.use("/children", childrenRoutes);
+app.use("/icons", iconsRoutes);
+app.use("/tasks", tasksRoutes);
+app.use("/children", childGoalsRoutes);
+app.use("/children", childTasksRoutes);
 
 // Server launching
 app.listen(PORT, () => {
