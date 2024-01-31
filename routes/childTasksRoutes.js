@@ -47,7 +47,6 @@ router.post("/:id/add", async (req, res) => {
       child_id: req.params.id,
       task_id: req.body.id,
       is_completed: false,
-      is_verified: false,
     };
 
     const created = await knex("child_tasks").insert(addTask);
