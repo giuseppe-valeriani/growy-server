@@ -59,6 +59,27 @@ router.post("/:id/add", async (req, res) => {
   }
 });
 
+// PATCH a single child task
+router.patch("/:id/tasks", async (req, res) => {
+  if (!req.body.id) {
+    return res.status(400).json({ message: "Bad request" });
+  }
+
+  try {
+    const taskObtained = await knex("child_tasks")
+      .where({ id: req.body.id })
+      .first();
+    const setCompleted = { ...taskObtained, is_completed: true };
+    await knex("child_tasks")
+      .where({ id: req.body.id })
+      .first()
+      .update(setCompleted);
+    return res.status(200).json(setCompleted);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
 // DELETE single child task
 router.delete("/:id/tasks", async (req, res) => {
   if (!req.params.id) {
