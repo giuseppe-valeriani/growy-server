@@ -19,5 +19,11 @@ exports.seed = async function (knex) {
       goal: "Trip to Disneyland",
       points: 2000,
     },
+    {
+      id: 4,
+      child_id: 2,
+      goal: "Luna Park Visit",
+      points: 40,
+    },
   ]);
 };
