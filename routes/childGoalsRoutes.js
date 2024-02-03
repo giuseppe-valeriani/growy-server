@@ -2,6 +2,12 @@
 const router = require("express").Router();
 const knex = require("knex")(require("../knexfile"));
 
+// GET all completed goals
+router.get("/goals", async (req, res) => {
+  const response = await knex("child_tasks").where({ is_completed: true });
+  return res.status(200).json(response);
+});
+
 // GET child list of goals
 router.get("/:id/goals", async (req, res) => {
   const response = await knex("goals").where({ child_id: req.params.id });
@@ -47,7 +53,7 @@ router.patch("/goals/:id", async (req, res) => {
   }
 });
 
-// DELETE a gol
+// DELETE a goal
 router.delete("/goals/:id", async (req, res) => {
   if (!req.params.id) {
     return res.status(400).json({ message: "Bad request" });

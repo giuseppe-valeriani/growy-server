@@ -47,7 +47,6 @@ router.post("/:id/add", async (req, res) => {
       child_id: req.params.id,
       task_id: req.body.id,
       is_completed: false,
-      is_verified: false,
     };
 
     const created = await knex("child_tasks").insert(addTask);
@@ -55,6 +54,27 @@ router.post("/:id/add", async (req, res) => {
       .where({ id: created[0] })
       .first();
     return res.status(201).json(response);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+});
+
+// PATCH a single child task
+router.patch("/:id/tasks", async (req, res) => {
+  if (!req.body.id) {
+    return res.status(400).json({ message: "Bad request" });
+  }
+
+  try {
+    const taskObtained = await knex("child_tasks")
+      .where({ id: req.body.id })
+      .first();
+    const setCompleted = { ...taskObtained, is_completed: true };
+    await knex("child_tasks")
+      .where({ id: req.body.id })
+      .first()
+      .update(setCompleted);
+    return res.status(200).json(setCompleted);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node --watch server.js",
-    "migrate": "knex migrate:latest",
-    "seed": "knex seed:run",
-    "rollback": "knex migrate:rollback"
+    "reset": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "author": "Giuseppe Valeriani",
   "license": "ISC",
