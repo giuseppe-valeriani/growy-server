@@ -22,7 +22,7 @@ exports.seed = async function (knex) {
     {
       id: 4,
       child_id: 2,
-      goal: "Luna Park Visit",
+      goal: "watch my favourite show",
       points: 40,
     },
   ]);
