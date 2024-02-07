@@ -83,7 +83,7 @@ exports.seed = async function (knex) {
     },
     {
       id: 11,
-      task: "do your homeworks",
+      task: "do your homework",
       frequence: "weekly",
       icon: "icons/kidschores-75.png",
       points: 10,
@@ -147,7 +147,7 @@ exports.seed = async function (knex) {
     },
     {
       id: 19,
-      task: "get your vitamins",
+      task: "take your vitamins",
       frequence: "daily",
       icon: "icons/kidschores-18.png",
       points: 5,
