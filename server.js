@@ -5,7 +5,11 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+// Middlewares
+const { authenticateToken } = require("./middlewares/auth");
+
 // Endpoints folders
+const accessRoutes = require("./routes/accessRoutes");
 const childrenRoutes = require("./routes/childrenRoutes");
 const iconsRoutes = require("./routes/iconsRoutes");
 const tasksRoutes = require("./routes/tasksRoutes");
@@ -16,11 +20,12 @@ const childTasksRoutes = require("./routes/childTasksRoutes");
 app.use(cors());
 app.use(express.json());
 app.use(express.static("./assets"));
-app.use("/children", childrenRoutes);
-app.use("/icons", iconsRoutes);
-app.use("/tasks", tasksRoutes);
-app.use("/children", childGoalsRoutes);
-app.use("/children", childTasksRoutes);
+app.use("/", accessRoutes);
+app.use("/children", authenticateToken, childrenRoutes);
+app.use("/icons", authenticateToken, iconsRoutes);
+app.use("/tasks", authenticateToken, tasksRoutes);
+app.use("/children", authenticateToken, childGoalsRoutes);
+app.use("/children", authenticateToken, childTasksRoutes);
 
 // Server launching
 app.listen(PORT, () => {

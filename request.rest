@@ -1,0 +1,11 @@
+GET http://localhost:7777/icons
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicGFyZW50IiwiaWF0IjoxNzEyODM4NjMwLCJleHAiOjE3MTI4NDIyMzB9.faFEVCLpza5kp4-eRtNvdie8hfWje4GWj-dlf166po4
+
+
+POST http://localhost:7777/login
+Content-Type: application/json
+
+{
+    "user":"parent",
+    "password":"password"
+}
