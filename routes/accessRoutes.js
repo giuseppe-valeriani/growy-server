@@ -4,10 +4,23 @@ module.exports = router;
 
 const { generateToken } = require("../middlewares/auth");
 
+// This is normally protected data on an access database
 const validationList = [
   {
-    user: process.env.LOGIN_USER,
-    password: process.env.LOGIN_PASSWORD,
+    user: "parent",
+    password: "parent",
+  },
+  {
+    user: "romolo",
+    password: "romolo",
+  },
+  {
+    user: "remo",
+    password: "remo",
+  },
+  {
+    user: "sara",
+    password: "sara",
   },
 ];
 
